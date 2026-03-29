@@ -236,9 +236,9 @@ export default function ActiveWorkout() {
       </div>
 
       <div className="min-h-0 overflow-hidden p-3">
-        <div className="grid h-full min-h-0 grid-rows-[clamp(92px,21vh,136px)_1fr] gap-2.5">
-          <div className="overflow-hidden rounded-[1.8rem] border border-gray-900 bg-surface">
-            <img src={activeGroup.image_url} alt={activeGroup.name} className="h-32 w-full object-contain p-3" />
+        <div className="grid h-full min-h-0 grid-rows-[minmax(140px,1fr)_auto] gap-2.5">
+          <div className="overflow-hidden rounded-[1.8rem] border border-gray-900 bg-[#1e1e21]">
+            <img src={activeGroup.image_url} alt={activeGroup.name} className="h-full w-full object-contain p-1" />
           </div>
 
           <div className="min-h-0">
