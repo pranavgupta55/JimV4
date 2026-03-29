@@ -17,18 +17,20 @@ export default function App() {
       setLoading(false);
     });
 
-    const { data: { subscription } } = supabase.auth.onAuthStateChange((_event, session) => {
-      setSession(session);
+    const { data: { subscription } } = supabase.auth.onAuthStateChange((_event, nextSession) => {
+      setSession(nextSession);
     });
 
     return () => subscription.unsubscribe();
-  },[]);
+  }, []);
 
-  if (loading) return <div className="min-h-screen bg-background text-white flex items-center justify-center">Loading...</div>;
+  if (loading) {
+    return <div className="flex h-[100dvh] items-center justify-center bg-background text-white">Loading...</div>;
+  }
 
   return (
     <BrowserRouter>
-      <div className="min-h-screen bg-background max-w-md mx-auto relative shadow-2xl overflow-hidden">
+      <div className="mx-auto h-[100dvh] max-h-[100dvh] max-w-md overflow-hidden bg-background shadow-2xl">
         <Routes>
           {!session ? (
             <Route path="*" element={<Auth />} />

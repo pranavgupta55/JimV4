@@ -2,9 +2,17 @@
 @tailwind components;
 @tailwind utilities;
 
+html,
+body,
+#root {
+  height: 100%;
+  overflow: hidden;
+}
+
 body {
-  @apply bg-background text-white antialiased overflow-x-hidden selection:bg-accent selection:text-black;
+  @apply bg-background text-white antialiased selection:bg-accent selection:text-black;
   -webkit-tap-highlight-color: transparent;
+  overscroll-behavior: none;
 }
 
 /* Hide scrollbar for clean UI */

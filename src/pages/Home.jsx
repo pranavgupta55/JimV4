@@ -3,27 +3,22 @@ import { Activity, BarChart2 } from 'lucide-react';
 
 export default function Home() {
   return (
-    <div className="flex flex-col min-h-screen p-4 gap-4 pb-8">
-      <div className="flex-1 flex flex-col justify-end">
-        <Link 
-          to="/workout" 
-          className="bg-accent text-black rounded-[2rem] p-8 flex flex-col items-center justify-center gap-4 active:scale-95 transition-transform shadow-[0_0_40px_rgba(56,189,248,0.15)]"
-          style={{ minHeight: '60vh' }}
-        >
-          <Activity size={64} strokeWidth={1.5} />
-          <span className="text-4xl font-black tracking-tight">START</span>
-        </Link>
-      </div>
-      
-      <div className="h-1/4">
-        <Link 
-          to="/logs" 
-          className="bg-surface border border-gray-800 text-white rounded-[2rem] h-full p-8 flex flex-col items-center justify-center gap-2 active:scale-95 transition-transform"
-        >
-          <BarChart2 size={32} className="text-gray-400" />
-          <span className="text-xl font-bold text-gray-400">SEE LOGS</span>
-        </Link>
-      </div>
+    <div className="grid h-full grid-rows-[1fr_auto] gap-3 p-4 pb-4 overflow-hidden">
+      <Link
+        to="/workout"
+        className="flex min-h-0 flex-col items-center justify-center gap-3 rounded-[2rem] bg-accent px-6 py-8 text-black shadow-[0_0_40px_rgba(56,189,248,0.15)] transition-transform active:scale-[0.98]"
+      >
+        <Activity size={56} strokeWidth={1.5} />
+        <span className="text-4xl font-black tracking-tight">START</span>
+      </Link>
+
+      <Link
+        to="/logs"
+        className="flex min-h-[112px] flex-col items-center justify-center gap-2 rounded-[2rem] border border-gray-800 bg-surface px-6 py-5 text-white transition-transform active:scale-[0.98]"
+      >
+        <BarChart2 size={28} className="text-gray-400" />
+        <span className="text-lg font-bold tracking-wide text-gray-400">SEE LOGS</span>
+      </Link>
     </div>
   );
 }
