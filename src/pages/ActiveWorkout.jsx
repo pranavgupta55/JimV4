@@ -17,7 +17,9 @@ export default function ActiveWorkout() {
   useEffect(() => {
     async function initWorkout() {
       try {
-        const { data: { user } } = await supabase.auth.getUser();
+        const {
+          data: { user },
+        } = await supabase.auth.getUser();
 
         const { data: workout, error: workoutError } = await supabase
           .from('workouts')
@@ -127,6 +129,16 @@ export default function ActiveWorkout() {
   const selectedExerciseId = activeState?.selectedExerciseId ?? activeGroup?.exercises?.[0]?.id ?? null;
   const selectedValues = selectedExerciseId ? activeState?.exerciseValues?.[selectedExerciseId] : null;
 
+  const completedGroupIds = useMemo(
+    () =>
+      muscleGroups
+        .filter((group) =>
+          Object.values(groupState[group.id]?.exerciseValues ?? {}).some((entry) => entry?.isCompleted)
+        )
+        .map((group) => group.id),
+    [groupState, muscleGroups]
+  );
+
   const updateExerciseValue = (groupId, exerciseId, nextPatch) => {
     setGroupState((current) => ({
       ...current,
@@ -171,10 +183,7 @@ export default function ActiveWorkout() {
   const handleUndo = async () => {
     if (!activeGroup || !selectedExerciseId || !selectedValues?.logId) return;
 
-    const { error } = await supabase
-      .from('workout_logs')
-      .delete()
-      .eq('id', selectedValues.logId);
+    const { error } = await supabase.from('workout_logs').delete().eq('id', selectedValues.logId);
 
     if (error) {
       console.error('Failed to undo log', error);
@@ -226,19 +235,14 @@ export default function ActiveWorkout() {
         </button>
       </div>
 
-      <div className="min-h-0 overflow-hidden p-4">
-        <div className="grid h-full min-h-0 grid-rows-[clamp(120px,28vh,190px)_1fr] gap-3">
-          <div className="overflow-hidden rounded-[2rem] border border-gray-900 bg-surface">
-            <img
-              src={activeGroup.image_url}
-              alt={activeGroup.name}
-              className="h-full w-full object-contain p-4"
-            />
+      <div className="min-h-0 overflow-hidden p-3">
+        <div className="grid h-full min-h-0 grid-rows-[clamp(92px,21vh,136px)_1fr] gap-2.5">
+          <div className="overflow-hidden rounded-[1.8rem] border border-gray-900 bg-surface">
+            <img src={activeGroup.image_url} alt={activeGroup.name} className="h-full w-full object-contain p-3" />
           </div>
 
           <div className="min-h-0">
             <ExerciseLogger
-              muscleGroupName={activeGroup.name}
               selectedExerciseId={selectedExerciseId}
               exerciseOptions={activeGroup.exercises}
               sets={selectedValues.sets}
@@ -262,22 +266,13 @@ export default function ActiveWorkout() {
         </div>
       </div>
 
-      <div className="border-t border-gray-900 bg-background px-4 pb-4 pt-3">
-        <div className="mb-3">
-          <MuscleGroupTabs
-            groups={muscleGroups}
-            activeGroupId={activeGroup.id}
-            onSelect={setActiveGroupId}
-          />
-        </div>
-
-        <button
-          type="button"
-          onClick={() => navigate('/')}
-          className="w-full rounded-2xl border border-gray-800 py-3 text-sm font-black uppercase tracking-[0.2em] text-gray-400 transition-all active:scale-[0.98]"
-        >
-          End Workout
-        </button>
+      <div className="border-t border-gray-900 bg-background px-3 pb-3 pt-2.5">
+        <MuscleGroupTabs
+          groups={muscleGroups}
+          activeGroupId={activeGroup.id}
+          completedGroupIds={completedGroupIds}
+          onSelect={setActiveGroupId}
+        />
       </div>
     </div>
   );
