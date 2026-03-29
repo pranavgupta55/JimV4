@@ -40,7 +40,7 @@ export default function ExerciseLogger({
   const selectedExercise = exerciseOptions.find((exercise) => exercise.id === selectedExerciseId);
 
   return (
-    <div className="grid h-full min-h-0 grid-rows-[auto_auto_1fr] gap-3 rounded-[2rem] border border-gray-900 bg-surface p-3 shadow-2xl">
+    <div className="grid h-full min-h-0 grid-rows-[auto_auto_1fr] gap-3 rounded-[2rem] border border-gray-900 bg-[#1e1e21] p-3 shadow-2xl">
       <div className="relative">
         <select
           value={selectedExerciseId ?? ''}
