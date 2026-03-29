@@ -1,6 +1,6 @@
 import { useState, useEffect } from 'react';
 import { useNavigate } from 'react-router-dom';
-import { supabase } from '../lib/supabaseClient.jsx';
+import { supabase } from '../lib/supabaseClient.js';
 import ExerciseLogger from '../components/ExerciseLogger.jsx';
 import { X } from 'lucide-react';
 

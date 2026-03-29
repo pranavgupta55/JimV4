@@ -1,6 +1,6 @@
 import { useState, useEffect } from 'react';
 import { useNavigate } from 'react-router-dom';
-import { supabase } from '../lib/supabaseClient.jsx';
+import { supabase } from '../lib/supabaseClient.js';
 import VolumeChart from '../components/VolumeChart.jsx';
 import { ArrowLeft } from 'lucide-react';
 import { format, parseISO } from 'date-fns';
