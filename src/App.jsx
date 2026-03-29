@@ -1,6 +1,6 @@
 import { BrowserRouter, Routes, Route, Navigate } from 'react-router-dom';
 import { useEffect, useState } from 'react';
-import { supabase } from './lib/supabaseClient';
+import { supabase } from './lib/supabaseClient.jsx';
 
 import Home from './pages/Home';
 import ActiveWorkout from './pages/ActiveWorkout';

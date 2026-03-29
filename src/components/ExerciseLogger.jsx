@@ -1,5 +1,5 @@
 import { useState } from 'react';
-import { supabase } from '../lib/supabaseClient';
+import { supabase } from '../lib/supabaseClient.jsx';
 import { CheckCircle2 } from 'lucide-react';
 
 export default function ExerciseLogger({ exercise, workoutId }) {

@@ -1,7 +1,7 @@
 import { useState, useEffect } from 'react';
 import { useNavigate } from 'react-router-dom';
-import { supabase } from '../lib/supabaseClient';
-import ExerciseLogger from '../components/ExerciseLogger';
+import { supabase } from '../lib/supabaseClient.jsx';
+import ExerciseLogger from '../components/ExerciseLogger.jsx';
 import { X } from 'lucide-react';
 
 export default function ActiveWorkout() {
