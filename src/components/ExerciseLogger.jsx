@@ -59,23 +59,27 @@ export default function ExerciseLogger({ exercise, workoutId }) {
     <div className="bg-surface rounded-3xl overflow-hidden shadow-2xl border border-gray-900">
         {/* Header */}
         <div className="p-5 border-b border-gray-900 relative overflow-hidden bg-surface">
-        {/* The Image */}
-        <div 
-            className="absolute right-0 top-0 h-full w-40 opacity-40 bg-right bg-contain bg-no-repeat" 
-            style={{ 
-            backgroundImage: `url(${exercise.muscle_groups?.image_url})`,
-            maskImage: 'linear-gradient(to left, rgba(0,0,0,1) 40%, rgba(0,0,0,0) 100%)',
-            WebkitMaskImage: 'linear-gradient(to left, rgba(0,0,0,1) 40%, rgba(0,0,0,0) 100%)'
-            }} 
-        />
-        <div className="relative z-10">
+          {/* The Muscle Diagram Image */}
+          {exercise.image_url && (
+            <div 
+              className="absolute right-0 top-0 h-full w-48 opacity-50 bg-right bg-contain bg-no-repeat pointer-events-none" 
+              style={{ 
+                backgroundImage: `url(${exercise.image_url})`,
+                // This mask makes the image fade into the black background on the left side
+                maskImage: 'linear-gradient(to left, rgba(0,0,0,1) 30%, rgba(0,0,0,0) 100%)',
+                WebkitMaskImage: 'linear-gradient(to left, rgba(0,0,0,1) 30%, rgba(0,0,0,0) 100%)'
+              }} 
+            />
+          )}
+
+          <div className="relative z-10">
             <p className="text-[10px] text-accent font-black uppercase tracking-[0.2em] mb-1">
-            {exercise.muscle_group}
+              {exercise.muscle_group}
             </p>
             <h2 className="text-2xl text-white font-bold leading-tight">
-            {exercise.name}
+              {exercise.name}
             </h2>
-        </div>
+          </div>
         </div>
 
       <div className="p-5 space-y-4">

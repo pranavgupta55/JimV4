@@ -41,15 +41,16 @@ export default function ActiveWorkout() {
 
         // 4. Merge data
         const merged = activeExercises.map(ex => {
-          const pastLog = lastLogs?.find(l => l.exercise_id === ex.id);
-          return {
-            id: ex.id,
-            name: ex.name,
-            muscle_group: ex.muscle_groups.name,
-            defaultSets: pastLog?.sets || 3,
-            defaultReps: pastLog?.reps || 10
-          };
-        });
+        const pastLog = lastLogs?.find(l => l.exercise_id === ex.id);
+        return {
+          id: ex.id,
+          name: ex.name,
+          muscle_group: ex.muscle_groups.name,
+          image_url: ex.muscle_groups.image_url, // Add this line
+          defaultSets: pastLog?.sets || 3,
+          defaultReps: pastLog?.reps || 10
+        };
+      });
 
         setExercises(merged);
       } catch (err) {

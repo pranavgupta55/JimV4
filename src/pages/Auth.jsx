@@ -21,7 +21,7 @@ export default function Auth() {
   return (
     <div className="flex flex-col items-center justify-center min-h-screen p-6">
       <div className="w-full bg-surface p-8 rounded-3xl border border-gray-800">
-        <h1 className="text-3xl font-bold mb-8 text-center text-accent">CALI-TRACK</h1>
+        <h1 className="text-3xl font-bold mb-8 text-center text-accent">CLOCKWORK</h1>
         <form onSubmit={handleAuth} className="space-y-4">
           <input 
             type="email" 
