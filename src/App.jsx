@@ -1,11 +1,11 @@
 import { BrowserRouter, Routes, Route, Navigate } from 'react-router-dom';
 import { useEffect, useState } from 'react';
-import { supabase } from './lib/supabaseClient.jsx';
+import { supabase } from './lib/supabaseClient.js';
 
 import Home from './pages/Home';
-import ActiveWorkout from './pages/ActiveWorkout';
-import Logs from './pages/Logs';
-import Auth from './pages/Auth';
+import ActiveWorkout from './pages/ActiveWorkout.jsx';
+import Logs from './pages/Logs.jsx';
+import Auth from './pages/Auth.jsx';
 
 export default function App() {
   const [session, setSession] = useState(null);
