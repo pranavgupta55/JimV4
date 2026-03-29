@@ -57,13 +57,26 @@ export default function ExerciseLogger({ exercise, workoutId }) {
 
   return (
     <div className="bg-surface rounded-3xl overflow-hidden shadow-2xl border border-gray-900">
-      {/* Header */}
-      <div className="p-5 border-b border-gray-900 relative overflow-hidden">
-        {/* Decorative gradient replacing image for now. Can add actual images later via CSS background */}
-        <div className="absolute -right-10 -top-10 w-32 h-32 bg-accent/10 rounded-full blur-3xl pointer-events-none"></div>
-        <p className="text-[10px] text-accent font-black uppercase tracking-[0.2em] mb-1">{exercise.muscle_group}</p>
-        <h2 className="text-2xl text-white font-bold leading-tight">{exercise.name}</h2>
-      </div>
+        {/* Header */}
+        <div className="p-5 border-b border-gray-900 relative overflow-hidden bg-surface">
+        {/* The Image */}
+        <div 
+            className="absolute right-0 top-0 h-full w-40 opacity-40 bg-right bg-contain bg-no-repeat" 
+            style={{ 
+            backgroundImage: `url(${exercise.muscle_groups?.image_url})`,
+            maskImage: 'linear-gradient(to left, rgba(0,0,0,1) 40%, rgba(0,0,0,0) 100%)',
+            WebkitMaskImage: 'linear-gradient(to left, rgba(0,0,0,1) 40%, rgba(0,0,0,0) 100%)'
+            }} 
+        />
+        <div className="relative z-10">
+            <p className="text-[10px] text-accent font-black uppercase tracking-[0.2em] mb-1">
+            {exercise.muscle_group}
+            </p>
+            <h2 className="text-2xl text-white font-bold leading-tight">
+            {exercise.name}
+            </h2>
+        </div>
+        </div>
 
       <div className="p-5 space-y-4">
         {/* Sets */}
